@@ -8,6 +8,14 @@
 
 ---
 
+## NOTES!
+
+- Jangan lupa selalu `git pull` tiap mau mulai ngedit file
+- Sebelum `git push` jangan lupa untuk edit **`requirements.txt`** setiap ada penambahan atau perubahan _library/package_ yang dipake
+- Jangan lupa untuk `git push` setiap suatu fitur selesai dibuat
+
+---
+
 ## Initial Run (1)
 
 INGET, INI UNTUK **RUN PROJECT PERTAMA KALI** ATAU BELUM PERNAH ADA FILE PROYEK TINGGIKU SAMSEK ALIAS DARI AWAL!!
@@ -140,10 +148,18 @@ git commit -m "feat: tambahkan fitur unggah gambar untuk estimasi tinggi"
 
 **3. Push**
 
+**Sebelum ngepush pastiin ada file `.gitignore` dan ada isinya! samain isinya kyk yg di [repository git tinggiku](https://github.com/kkokonatsu/tinggiku/blob/main/.gitignore).**
+
 ```git
 # push pertama kali
 git push -u origin main
 
 # push kedua, ketiga, dst.
 git push
+```
+
+---
+
+```
+Thanks :) semangat ngodingnya!
 ```
