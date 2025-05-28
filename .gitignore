@@ -1,0 +1,21 @@
+# Virtual environment
+env/
+venv/
+.venv/
+
+# Byte-code files
+__pycache__/
+*.pyc
+
+# Operating System files
+.DS_Store 
+Thumbs.db
+
+# Flask/Python specific
+.flaskenv 
+.env      
+*.sqlite3 
+
+# IDE-specific files (contoh untuk VS Code, IntelliJ/PyCharm)
+.vscode/
+.idea/
