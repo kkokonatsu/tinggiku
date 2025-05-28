@@ -1,5 +1,13 @@
 # Cara Run Project di Local (PENTING)
 
+**Table of Contents**
+
+1. [Initial Run](#initial-run-1)
+2. [Run Biasa](#run-biasa-2)
+3. [Add-Commit-Push](#add-commit--push-3)
+
+---
+
 ## Initial Run (1)
 
 INGET, INI UNTUK **RUN PROJECT PERTAMA KALI** ATAU BELUM PERNAH ADA FILE PROYEK TINGGIKU SAMSEK ALIAS DARI AWAL!!
@@ -101,4 +109,41 @@ pip install -r requirements.txt
 
 ```shell
 flask run
+```
+
+---
+
+## Add, Commit, & Push (3)
+
+**1. Add**
+
+```git
+git add .
+```
+
+**2. Commit**
+
+Awali dengan kata kunci yang menunjukkan tipe perubahan, diikuti titik dua dan spasi. Contohnya:
+
+```
+git commit -m "feat: tambahkan fitur unggah gambar untuk estimasi tinggi"
+```
+
+- `feat`: (feature): Menambahkan fitur baru.
+- `fix`: (bug fix): Memperbaiki bug.
+- `docs`: (documentation): Perubahan pada dokumentasi.
+- `chore`: (chore): Pemeliharaan rutin, tanpa perubahan kode aplikasi atau tes.
+- `refactor`: (refactor): Perubahan kode yang tidak mengubah fungsionalitas (misalnya, merestrukturisasi kode).
+- `test`: (test): Menambahkan atau memperbaiki tes.
+- `perf`: (performance): Peningkatan kinerja kode.
+- `style`: (style): Perubahan gaya kode (formatting, titik koma, dll.).
+
+**3. Push**
+
+```git
+# push pertama kali
+git push -u origin main
+
+# push kedua, ketiga, dst.
+git push
 ```
