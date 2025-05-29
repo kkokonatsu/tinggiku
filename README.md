@@ -98,7 +98,7 @@ cd ../tinggiku
 .\env\Scripts\activate
 
 # cara 2
-source env/bin/activate
+source env/Scripts/activate
 ```
 
 3. Tarik Perubahan Terbaru (Pull Changes): Ini akan mengunduh perubahan terbaru dari repository Git.

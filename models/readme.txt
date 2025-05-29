@@ -1,0 +1,1 @@
+nanti export model nya taruh sini ya 
