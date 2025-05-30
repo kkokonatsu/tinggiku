@@ -69,10 +69,8 @@ def deteksiPerson(image_path, threshold=0.9):
 # In[ ]:
 
 
-# Load depth estimation pipeline sekali di luar fungsi untuk efisiensi
-depth_estimator = pipeline(task="depth-estimation", model="Intel/zoedepth-nyu-kitti")
 
-def kedalamanCitra(image: Image.Image, point: tuple) -> float:
+def kedalamanCitra(image, point, depth_estimator):
     """
     Mengembalikan nilai kedalaman pada titik tertentu dari citra menggunakan ZoeDepth.
     
@@ -168,11 +166,9 @@ def ekstrakMetadataCitra(image_path):
 # In[ ]:
 
 
-def ektraksiFitur(img_path):
+def ekstraksiFitur(img_path, depth_estimator):
     dataObjek = deteksiPerson(img_path)
-    kedalamanObjek = kedalamanCitra(img_path, dataObjek['center'])
+    kedalamanObjek = kedalamanCitra(img_path, dataObjek['center'], depth_estimator)
     metadata = ekstrakMetadataCitra(img_path)
     return dataObjek, kedalamanObjek, metadata
-
-img_path = '../Dataset/gambar.jpg'
 
