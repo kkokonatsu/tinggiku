@@ -1,1 +1,7 @@
-Flask
+Flask==3.1.1
+numpy==1.21.5
+pandas==2.2.3
+Pillow==9.0.1
+Pillow==11.2.1
+pyheif==0.8.0
+torch==2.3.1
