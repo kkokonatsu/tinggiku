@@ -1,3 +1,68 @@
+# Tinggiku: Pengukur Tinggi Badan berbasis Foto
+
+## Struktur Proyek
+
+```
+tinggiku/
+├── app.py
+├── requirements.txt
+├── .flaskenv
+├── .gitignore
+├── static/
+├── templates/
+├── models/
+├── data/
+├── src/
+└── notebooks/
+```
+
+### app.py
+
+File ini berisi kode utama yang menginisialisasi aplikasi Flask, mendefinisikan rute atau endpoint web (misalnya, apa yang terjadi ketika seseorang membuka http://127.0.0.1:5000/ atau mengunggah gambar ke /process-image), dan bertindak sebagai "orkestrator" yang memanggil logika bisnis dari modul-modul lain di folder src/.
+
+### requirements.txt
+
+File ini adalah daftar resep untuk semua library Python yang dibutuhkan proyek Anda. Ketika Anda atau pengembang lain menjalankan pip install -r requirements.txt, Python akan menginstal semua dependensi yang tercantum (seperti Flask, PyTorch, ONNX Runtime, Pillow, dll.) dengan versi yang spesifik. Ini memastikan setiap orang yang mengerjakan proyek menggunakan versi library yang sama persis, mencegah masalah "berfungsi di komputer saya tapi tidak di komputer Anda".
+
+### .flaskenv
+
+Ini adalah file konfigurasi kecil untuk variabel lingkungan Flask. File ini memberitahu perintah flask (seperti flask run) di mana menemukan aplikasi Flask Anda (yaitu, app.py). Dengan .flaskenv, Anda tidak perlu mengatur FLASK_APP=app.py secara manual setiap kali memulai sesi terminal baru.
+
+### .gitignore
+
+File ini adalah daftar abaian untuk Git. .gitignore memberi tahu Git file atau folder mana yang tidak boleh dilacak atau di-commit ke repositori. Ini penting untuk mengabaikan folder besar seperti env/ (virtual environment Python) dan node_modules/ (dependensi JavaScript/Node.js) serta file yang dihasilkan otomatis (seperti **pycache**/ dan static/css/output.css). Ini menjaga ukuran repositori tetap kecil dan rapi.
+
+### static/
+
+Folder ini menampung semua aset frontend statis Anda. Ini termasuk:
+
+- **css:** File styling (seperti style.css atau output.css dari Tailwind) yang menentukan tampilan aplikasi Anda.
+- **js:** File skrip (script.js) yang membuat halaman web interaktif (misalnya, menangani unggah gambar, menampilkan hasil).
+- **img:** Gambar-gambar kecil atau ikon yang digunakan di antarmuka pengguna. Flask akan melayani file-file ini langsung ke browser pengguna.
+
+### templates/
+
+Folder ini berisi file HTML yang akan disajikan oleh Flask. Biasanya, ini adalah halaman utama aplikasi Anda (seperti `index.html`).
+
+### models/
+
+Ini adalah tempat Anda menyimpan file-file model Deep Learning yang sudah terlatih. Dalam kasus "Tinggiku", ini akan menjadi file model YOLOS dan MiDaS/DPT yang sudah Anda ekspor ke format yang optimal untuk inferensi di CPU (misalnya, .onnx). Model-model ini akan dimuat ke memori server saat aplikasi dimulai.
+
+### data/
+
+Folder ini digunakan untuk menyimpan data statis atau data lookup yang tidak memerlukan database eksternal. Untuk proyek "Tinggiku", ini akan menampung file camera_sensors.json yang berisi informasi ukuran sensor kamera untuk berbagai model. Data ini akan dibaca oleh aplikasi Python saat startup.
+
+### src/
+
+Ini adalah jantung logika bisnis Anda yang lebih terstruktur. Folder `src/` (singkatan dari source) adalah tempat Anda akan memisahkan kode Python utama Anda menjadi modul-modul yang lebih kecil dan terorganisir. Pendekatan ini membantu menjaga app.py tetap ringkas dan membuat proyek lebih modular dan mudah dikelola. Di dalamnya biasanya ada sub-folder:
+
+- `services/` (untuk logika bisnis utama)
+- `utils/` (untuk fungsi pembantu).
+
+### notebooks/
+
+Folder ini didedikasikan untuk file Jupyter Notebook (.ipynb) Anda. Notebook sangat berguna untuk eksperimen, analisis data, pelatihan model awal, atau pengujian bagian-bagian kecil dari logika Deep Learning Anda secara iteratif, sebelum mengintegrasikannya ke dalam kode aplikasi Flask utama. Menjaga notebook terpisah membantu membedakan kode eksperimental dari kode produksi.
+
 # Cara Run Project di Local (PENTING)
 
 **Table of Contents**
