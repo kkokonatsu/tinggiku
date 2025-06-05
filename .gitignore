@@ -3,6 +3,11 @@ env/
 venv/
 .venv/
 
+# Models
+.Models
+.models
+models
+
 # Byte-code files
 __pycache__/
 *.pyc
