@@ -228,4 +228,3 @@ def ekstraksiFitur(img_path, visualize):
     dataObjek = deteksiPerson(img_path, visualize=visualize)
     kedalamanObjek, focal_length_px = kedalamanCitra(img_path, dataObjek[0]['center'], visualize=visualize)
     return dataObjek, kedalamanObjek, metadata, focal_length_px
-

@@ -56,12 +56,12 @@
         theme: {
           extend: {
             colors: {
-              primary: '#A7C7E7', // Biru langit lembut
-              'primary-dark': '#8FABCA', // Biru sedikit lebih tua untuk hover
-              secondary: '#F2E2CE', // Krem hangat
+              primary: '#D3ECF4',
+              'primary-dark': '#83B3D6', // Biru sedikit lebih tua untuk hover
+              secondary: '#6480CA', // Krem hangat
               accent: '#B2D8B2', // Hijau mint lembut
               'accent-dark': '#9CCB9C', // Hijau mint sedikit lebih tua
-              'text-dark': '#2c3e50', // Abu-abu tua (hampir hitam)
+              'text-dark': '#263B76', // Abu-abu tua (hampir hitam)
               'text-light': '#7f8c8d', // Abu-abu medium
               background: '#f0f4f8', // Latar belakang sangat terang (off-white biru)
               'card-bg': '#ffffff', // Putih untuk card
@@ -81,49 +81,54 @@
         class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center"
       >
         <a href="#" class="flex items-center space-x-2">
-          <i class="fas fa-ruler-combined text-white text-2xl sm:text-3xl"></i>
-          <h1 class="text-lg sm:text-xl font-semibold text-white"
-            >Ukur Tinggi Badan</h1
-          >
+          <img
+            src="../static/img/logo.png"
+            alt="Logo Ukur Tinggi Badan"
+            class="h-10 sm:h-10"
+          />
         </a>
-        <nav class="hidden md:flex space-x-4">
+        <nav class="hidden md:flex space-x-12">
           <a
-            href="#cara-kerja"
-            class="text-white hover:text-secondary transition duration-150"
-            >Cara Kerja</a
+            href="#measurementForm"
+            class="text-dark font-semibold hover:text-secondary transition duration-150"
+            >Unggah Foto</a
           >
           <a
-            href="#tips"
-            class="text-white hover:text-secondary transition duration-150"
-            >Tips Akurat</a
+            href="#panduan-foto"
+            class="text-dark font-semibold hover:text-secondary transition duration-150"
+            >Panduan</a
           >
         </nav>
-        <button id="mobileMenuButton" class="md:hidden text-white text-2xl">
+        <button id="mobileMenuButton" class="md:hidden text-black text-2xl">
           <i class="fas fa-bars"></i>
         </button>
       </div>
       <div id="mobileMenu" class="md:hidden hidden bg-primary-dark">
         <a
-          href="#cara-kerja"
+          href="#measurementForm"
           class="block text-white text-center py-3 hover:bg-primary transition duration-150"
-          >Cara Kerja</a
+          >Unggah Foto</a
         >
+        <hr />
         <a
-          href="#tips"
+          href="#panduan-foto"
           class="block text-white text-center py-3 hover:bg-primary transition duration-150"
-          >Tips Akurat</a
+          >Panduan</a
         >
       </div>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <main class="container mx-auto px-4 sm:px-44 py-8 sm:py-12">
       <div class="text-center mb-8 sm:mb-12">
-        <h2 class="text-3xl sm:text-4xl font-bold text-text-dark mb-3 sm:mb-4"
-          >Pengukur Tinggi Badan Otomatis</h2
-        >
+        <h1 class="text-3xl sm:text-4xl font-bold text-text-dark mb-3 sm:mb-2">
+          TinggiKu
+        </h1>
+        <h2 class="text-xl sm:text-2xl font-bold text-text-dark mb-3 sm:mb-4">
+          Pengukur Tinggi Badan Otomatis
+        </h2>
         <p class="text-text-light text-base sm:text-lg max-w-2xl mx-auto">
-          Unggah fotomu yang berdiri tegak. Untuk hasil terbaik, sertakan objek
-          dengan tinggi yang diketahui di sampingmu.
+          Bersama AI kami bantu Anda menghitung tinggi badan dengan akurat dalam
+          waktu singkat tanpa alat ukur
         </p>
       </div>
 
@@ -133,64 +138,115 @@
         method="POST"
         enctype="multipart/form-data"
       >
-        <div class="grid lg:grid-cols-5 gap-6 sm:gap-8">
+        <div class="grid grid-cols-1 gap-6 sm:gap-8">
           <div
-            class="lg:col-span-3 bg-card-bg p-6 sm:p-8 rounded-xl shadow-lg border border-border-color"
+            class="bg-card-bg p-6 sm:p-8 rounded-xl shadow-lg border border-border-color"
           >
             <h3
-              class="text-xl sm:text-2xl font-semibold text-text-dark mb-6 text-center"
-              >1. Unggah Foto Anda</h3
+              class="text-2xl sm:text-2xl font-bold text-text-dark mb-6 text-center"
             >
+              Unggah Foto Anda
+            </h3>
 
-            <div class="mb-6 text-center">
-              <img
-                id="imagePreview"
-                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.453125%22%20y%3D%22159.3%22%3EPratinjau Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
-                alt="Pratinjau Gambar"
-                class="w-full max-w-md mx-auto h-auto object-contain rounded-lg border-2 border-dashed border-border-color bg-background mb-4"
-                style="min-height: 200px; max-height: 350px"
-              />
-            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div
+                class="shadow-inner rounded-xl border-2 border-indigo-100 p-6 md:col-span-1"
+              >
+                <div class="mb-6 text-center drop-shadow-sm">
+                  <img
+                    id="imagePreview"
+                    src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.453125%22%20y%3D%22159.3%22%3EPratinjau Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                    alt="Pratinjau Gambar"
+                    class="w-full h-auto object-contain rounded-lg border-2 border-dashed border-border-color bg-background mb-4"
+                    style="min-height: 150px; max-height: 350px"
+                  />
+                </div>
 
-            <div
-              class="file-input-container w-full bg-primary hover:bg-primary-dark text-white font-medium py-3 px-4 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105"
-            >
-              <label
-                for="fileUpload"
-                class="file-input-label flex items-center justify-center space-x-2 text-base sm:text-lg"
-              >
-                <i class="fas fa-cloud-upload-alt"></i>
-                <span>Pilih Foto dari Perangkat</span>
-              </label>
-              <input
-                type="file"
-                id="fileUpload"
-                name="foto_pengguna"
-                accept="image/png, image/jpeg, image/webp"
-                class="cursor-pointer"
-              />
-            </div>
-            <p class="text-xs text-text-light mt-3 text-center"
-              >Format: JPG, PNG, WEBP. Maks: 5MB.</p
-            >
+                <div
+                  class="file-input-container w-full bg-primary-dark hover:bg-secondary text-white font-medium py-3 px-4 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105"
+                >
+                  <label
+                    for="fileUpload"
+                    class="file-input-label flex items-center justify-center space-x-2 text-base sm:text-lg"
+                  >
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Pilih Foto dari Perangkat</span>
+                  </label>
+                  <input
+                    type="file"
+                    id="fileUpload"
+                    name="foto_pengguna"
+                    accept="image/png, image/jpeg, image/webp"
+                    class="cursor-pointer"
+                  />
+                </div>
+                <p class="text-xs text-text-light mt-3 text-center">
+                  Format: JPG, PNG, HEIC, WEBP. Maks: 5MB.
+                </p>
+              </div>
 
-            <div class="mt-6">
-              <label
-                for="objectHeight"
-                class="block text-sm font-medium text-text-dark mb-1"
-                >Tinggi Objek Referensi (cm)</label
-              >
-              <input
-                type="number"
-                id="objectHeight"
-                name="tinggi_objek_referensi"
-                placeholder="Mis: 100 (untuk objek 1 meter)"
-                class="w-full px-4 py-2.5 border border-border-color rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-150 ease-in-out bg-background placeholder-text-light"
-              />
-              <p class="text-xs text-text-light mt-1"
-                >Opsional, untuk akurasi lebih tinggi. Kosongkan jika tidak
-                ada.</p
-              >
+              <div class="md:col-span-1 flex flex-col">
+                <div
+                  class="bg-background p-6 rounded-lg shadow-inner border border-border-color min-h-[180px] flex flex-col justify-center items-center mb-6 flex-grow"
+                >
+                  <h4 class="text-lg font-semibold text-text-dark mb-4">
+                    Hasil Estimasi
+                  </h4>
+                  <div
+                    id="resultArea"
+                    class="text-center flex flex-col justify-center items-center w-full"
+                  >
+                    <div
+                      id="loadingIndicator"
+                      class="hidden mb-4 flex flex-col justify-center items-center"
+                    >
+                      <div
+                        class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
+                      ></div>
+                      <p class="text-text-light mt-3">Sedang memproses...</p>
+                    </div>
+                    <div id="measurementResult" class="hidden">
+                      <p class="text-text-light text-base sm:text-lg mb-1">
+                        Estimasi Tinggi Badan Anda
+                      </p>
+                      <p
+                        class="text-4xl sm:text-5xl font-bold text-secondary mb-2"
+                      >
+                        <span id="heightValue">-</span> cm
+                      </p>
+                      <p class="text-xs text-text-light">
+                        (Hasil ini adalah estimasi berdasarkan foto)
+                      </p>
+                    </div>
+                    <div id="errorResult" class="hidden">
+                      <i
+                        class="fas fa-exclamation-triangle text-4xl text-red-500 mb-3"
+                      ></i>
+                      <p class="text-text-light"
+                        >Gagal memproses gambar. Coba lagi.</p
+                      >
+                    </div>
+                    <div id="noResult" class="">
+                      <i
+                        class="fas fa-chart-line text-5xl sm:text-6xl text-border-color mb-4"
+                      ></i>
+                      <p class="text-text-light text-sm sm:text-base">
+                        Hasil pengukuran akan muncul di sini.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-yellow-100 p-4 rounded-lg shadow-inner border border-yellow-300 text-yellow-800 text-sm sm:text-base"
+                >
+                  <p class="flex items-center gap-2">
+                    <i class="fas fa-info-circle mr-2"></i>Pastikan gambar yang
+                    diunggah sesuai dengan panduan di bawah untuk memaksimalkan
+                    hasil pengukuran kami
+                  </p>
+                </div>
+              </div>
             </div>
 
             <button
@@ -205,135 +261,80 @@
           </div>
 
           <div
-            class="lg:col-span-2 bg-card-bg p-6 sm:p-8 rounded-xl shadow-lg border border-border-color"
+            id="panduan-foto"
+            class="bg-card-bg p-6 sm:p-8 rounded-xl shadow-lg border border-border-color"
           >
             <h3
-              class="text-xl sm:text-2xl font-semibold text-text-dark mb-6 text-center"
-              >2. Hasil Estimasi</h3
+              class="text-2xl sm:text-2xl font-bold text-text-dark mb-6 text-center"
             >
-            <div
-              id="resultArea"
-              class="text-center py-6 min-h-[150px] flex flex-col justify-center items-center"
-            >
-              <div id="loadingIndicator" class="hidden mb-4">
+              Panduan Foto
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="md:col-span-1 flex flex-col justify-between">
                 <div
-                  class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"
-                ></div>
-                <p class="text-text-light mt-3">Sedang memproses...</p>
+                  class="p-4 bg-background rounded-lg shadow-sm border border-border-color flex-grow"
+                >
+                  <h4
+                    class="text-lg font-semibold text-text-dark mb-2 flex items-center"
+                  >
+                    <i class="fas fa-person text-secondary mr-2"></i>Postur
+                    Tubuh
+                  </h4>
+                  <p class="text-text-light text-sm">
+                    Berdiri tegak dengan postur yang baik, seluruh tubuh dari
+                    kepala hingga kaki terlihat, dan hindari penutup kepala dan
+                    sepatu hak tinggi
+                  </p>
+                </div>
+                <div
+                  class="p-4 bg-background rounded-lg shadow-sm border border-border-color flex-grow mt-6"
+                >
+                  <h4
+                    class="text-lg font-semibold text-text-dark mb-2 flex items-center"
+                  >
+                    <i class="fas fa-lightbulb text-secondary mr-2"></i>Kualitas
+                    Foto
+                  </h4>
+                  <p class="text-text-light text-sm">
+                    Gunakan pencahayaan yang baik dan pastikan foto tidak buram
+                    ataupun kabur
+                  </p>
+                </div>
+                <div
+                  class="p-4 bg-background rounded-lg shadow-sm border border-border-color flex-grow mt-6"
+                >
+                  <h4
+                    class="text-lg font-semibold text-text-dark mb-2 flex items-center"
+                  >
+                    <i class="fas fa-camera text-secondary mr-2"></i>Jarak &
+                    Sudut Kamera
+                  </h4>
+                  <p class="text-text-light text-sm">
+                    Ambil foto dari jarak yang cukup agar seluruh tubuh terlihat
+                    dan hindari sudut pengambilan dari atas atau bawah
+                  </p>
+                </div>
               </div>
-              <div id="measurementResult" class="hidden">
-                <p class="text-text-light text-base sm:text-lg mb-1"
-                  >Estimasi Tinggi Badan Anda:</p
-                >
-                <p class="text-4xl sm:text-5xl font-bold text-primary mb-2"
-                  ><span id="heightValue">-</span> cm</p
-                >
-                <p class="text-xs text-text-light"
-                  >(Hasil ini adalah estimasi berdasarkan foto)</p
-                >
+              <div class="md:col-span-1 flex items-center justify-center">
+                <img
+                  src="../static/img/example.png"
+                  alt="Contoh Foto Akurat"
+                  class="w-full h-auto object-contain rounded-lg border-2 border-dashed border-border-color bg-background"
+                  style="height: 450px"
+                />
               </div>
-              <div id="errorResult" class="hidden">
-                <i
-                  class="fas fa-exclamation-triangle text-4xl text-red-500 mb-3"
-                ></i>
-                <p class="text-text-light"
-                  >Gagal memproses gambar. Coba lagi.</p
-                >
-              </div>
-              <div id="noResult" class="">
-                <i
-                  class="fas fa-chart-line text-5xl sm:text-6xl text-border-color mb-4"
-                ></i>
-                <p class="text-text-light text-sm sm:text-base"
-                  >Hasil pengukuran akan muncul di sini.</p
-                >
-              </div>
-            </div>
-
-            <div id="tips" class="mt-6 border-t border-border-color pt-6">
-              <h4
-                class="text-base sm:text-lg font-semibold text-text-dark mb-3 flex items-center"
-                ><i class="fas fa-lightbulb text-yellow-400 mr-2"></i>Tips
-                Akurasi:</h4
-              >
-              <ul
-                class="list-disc list-inside text-text-light space-y-1.5 text-xs sm:text-sm"
-              >
-                <li>Seluruh badan terlihat (kepala hingga kaki).</li>
-                <li>Berdiri tegak, pandangan lurus ke depan.</li>
-                <li>Foto diambil dari depan, kamera sejajar tengah tubuh.</li>
-                <li>Gunakan objek referensi jika memungkinkan.</li>
-                <li>Pencahayaan baik dan foto tidak buram.</li>
-              </ul>
             </div>
           </div>
         </div>
       </form>
-      <section
-        id="cara-kerja"
-        class="mt-12 sm:mt-16 py-10 sm:py-12 bg-secondary rounded-xl px-4 sm:px-6"
-      >
-        <div class="text-center mb-8">
-          <h2 class="text-2xl sm:text-3xl font-bold text-text-dark"
-            >Bagaimana Ini Bekerja?</h2
-          >
-          <p class="text-text-light mt-2 max-w-xl mx-auto text-sm sm:text-base">
-            Cukup ikuti langkah sederhana ini untuk mendapatkan estimasi tinggi
-            badan Anda.
-          </p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6 sm:gap-8 text-center">
-          <div
-            class="p-6 bg-card-bg rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-          >
-            <div class="text-primary text-3xl sm:text-4xl mb-4"
-              ><i class="fas fa-upload"></i
-            ></div>
-            <h3 class="text-lg sm:text-xl font-semibold text-text-dark mb-2"
-              >1. Unggah Foto</h3
-            >
-            <p class="text-text-light text-xs sm:text-sm"
-              >Pilih foto terbaik Anda yang menampilkan seluruh badan.</p
-            >
-          </div>
-          <div
-            class="p-6 bg-card-bg rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-          >
-            <div class="text-primary text-3xl sm:text-4xl mb-4"
-              ><i class="fas fa-ruler"></i
-            ></div>
-            <h3 class="text-lg sm:text-xl font-semibold text-text-dark mb-2"
-              >2. Info Referensi</h3
-            >
-            <p class="text-text-light text-xs sm:text-sm"
-              >Masukkan tinggi objek di foto (jika ada) untuk hasil lebih
-              presisi.</p
-            >
-          </div>
-          <div
-            class="p-6 bg-card-bg rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300"
-          >
-            <div class="text-primary text-3xl sm:text-4xl mb-4"
-              ><i class="fas fa-calculator"></i
-            ></div>
-            <h3 class="text-lg sm:text-xl font-semibold text-text-dark mb-2"
-              >3. Dapatkan Hasil</h3
-            >
-            <p class="text-text-light text-xs sm:text-sm"
-              >Sistem kami akan menganalisis dan memberikan estimasi tinggi
-              Anda.</p
-            >
-          </div>
-        </div>
-      </section>
     </main>
 
     <footer class="bg-text-dark text-background mt-12 sm:mt-16">
       <div class="container mx-auto px-4 sm:px-6 py-8 text-center">
         <p class="text-sm"
-          >&copy; <span id="currentYear"></span> Pengukur Tinggi Badan Otomatis.
-          Semua Hak Dilindungi.</p
+          >&copy; <span id="currentYear"></span> <b>TinggiKu</b></p
         >
+        <p>Privasi Anda kami lindungi</p>
         <p class="text-xs text-gray-400 mt-1"
           >Dibuat dengan <i class="fas fa-heart text-primary"></i> untuk
           kemudahan Anda.</p
@@ -379,7 +380,7 @@
             alert('Format file tidak valid. Harap unggah JPG, PNG, atau WEBP.');
             fileUpload.value = ''; // Reset input file
             imagePreview.src =
-              'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.453125%22%20y%3D%22159.3%22%3EPratinjau Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+              'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EPratinjau%20Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
             measureButton.disabled = true;
             return;
           }
@@ -388,7 +389,7 @@
             alert('Ukuran file terlalu besar. Maksimal 5MB.');
             fileUpload.value = '';
             imagePreview.src =
-              'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.453125%22%20y%3D%22159.3%22%3EPratinjau Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+              'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EPratinjau%20Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
             measureButton.disabled = true;
             return;
           }
@@ -404,7 +405,7 @@
           errorResult.classList.add('hidden');
         } else {
           imagePreview.src =
-            'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22133.453125%22%20y%3D%22159.3%22%3EPratinjau Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
+            'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22400%22%20height%3D%22300%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20400%20300%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_17972d70259%20text%20%7B%20fill%3A%23999%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A20pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_17972d70259%22%3E%3Crect%20width%3D%22400%22%20height%3D%22300%22%20fill%3D%22%23eee%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22200%22%20y%3D%22150%22%20text-anchor%3D%22middle%22%20dominant-baseline%3D%22middle%22%3EPratinjau%20Gambar%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E';
           measureButton.disabled = true;
           noResult.classList.remove('hidden');
         }
