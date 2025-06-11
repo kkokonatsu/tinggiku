@@ -100,7 +100,8 @@ def create_model_and_transforms(
             device = torch.device("mps")
         else:
             device = torch.device("cpu")
-    # print("Device yang digunakan adalah : ",device)
+    
+    print("Device yang digunakan adalah : ",device)
     patch_encoder, patch_encoder_config = create_backbone_model(
         preset=config.patch_encoder_preset
     )

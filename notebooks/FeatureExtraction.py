@@ -18,6 +18,8 @@ import torch
 from PIL import Image
 from PIL.ExifTags import TAGS, GPSTAGS
 import pyheif
+import piexif
+from PIL import Image
 
 import sys
 sys.path.append("ml-depth-pro/src")  # Pastikan ini menunjuk ke root package "depthpro"
@@ -78,9 +80,15 @@ def deteksiPerson(image_path, threshold=0.9, visualize=False):
                 draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=3)
                 draw.text((x_min, y_min - 10), f"Person {score:.2f}", fill="red")
 
-    # Tampilkan gambar jika diminta
+    # Simpan hasil bounding box ke folder Hasil_YOLO
     if visualize:
-        image_draw.show()
+        os.makedirs('Hasil_YOLO', exist_ok=True)
+        
+        # Nama file hasil sesuai nama gambar asli
+        output_filename = os.path.splitext(os.path.basename(image_path))[0] + '_yolo.png'
+        output_path = os.path.join('Hasil_YOLO', output_filename)
+
+        image_draw.save(output_path)
 
     return person_data
 
@@ -127,6 +135,9 @@ def kedalamanCitra(img_path, point_xy, visualize=False):
 
     # Visualisasi
     if visualize:
+        # Buat folder 'Hasil' jika belum ada
+        os.makedirs('Hasil DepthPro', exist_ok=True)
+
         fig, axs = plt.subplots(1, 2, figsize=(12, 5))
 
         # RGB image
@@ -142,7 +153,13 @@ def kedalamanCitra(img_path, point_xy, visualize=False):
         axs[1].axis('off')
 
         plt.tight_layout()
-        plt.show()
+
+        # Simpan gambar ke folder Hasil dengan nama sesuai citra
+        output_filename = os.path.splitext(os.path.basename(img_path))[0] + '_hasil.png'
+        output_path = os.path.join('Hasil DepthPro', output_filename)
+        plt.savefig(output_path)
+
+        plt.close(fig)  # Tutup figure agar tidak tampil di jendela saat batch processing
     # Hapus path setelah selesai digunakan
     if "ml-depth-pro/src" in sys.path:
         sys.path.remove("ml-depth-pro/src")
@@ -154,46 +171,37 @@ def kedalamanCitra(img_path, point_xy, visualize=False):
 
 # In[ ]:
 
+from PIL import Image, ExifTags
+from PIL.ExifTags import TAGS, GPSTAGS, IFD
+from pillow_heif import register_heif_opener  # HEIF support
+# import pillow_avif                           # AVIF support
 
-def ekstrakMetadataCitra(image_path):
-    try:
-        ext = os.path.splitext(image_path)[1].lower()
-        
-        if ext == ".heic":
-            heif_file = pyheif.read(image_path)
-            metadata = {}
+register_heif_opener()  # HEIF support
 
-            # Cek apakah ada metadata
-            if heif_file.metadata:
-                for item in heif_file.metadata:
-                    metadata[item['type']] = item['data']
-                return metadata
-            else:
-                return {"Warning": "Tidak ada metadata ditemukan dalam file HEIC."}
-        
-        else:
-            image = Image.open(image_path)
-            exif_data = image._getexif()
+def ekstrakMetadataCitra(fname: str) -> dict:
+    img = Image.open(fname)
+    exif = img.getexif()
 
-            if not exif_data:
-                return {"Warning": "Tidak ada data EXIF ditemukan."}
+    metadata = {}
 
-            metadata = {}
-            for tag_id, value in exif_data.items():
-                tag = TAGS.get(tag_id, tag_id)
-                if tag == "GPSInfo":
-                    gps_data = {}
-                    for t in value:
-                        sub_tag = GPSTAGS.get(t, t)
-                        gps_data[sub_tag] = value[t]
-                    metadata["GPSInfo"] = gps_data
-                else:
-                    metadata[tag] = value
+    # Ambil tag dasar
+    for k, v in exif.items():
+        tag = TAGS.get(k, k)
+        metadata[tag] = v
 
-            return metadata
+    # Ambil tag tambahan dari setiap IFD
+    for ifd_id in IFD:
+        try:
+            ifd = exif.get_ifd(ifd_id)
+            resolve = GPSTAGS if ifd_id == IFD.GPSInfo else TAGS
 
-    except Exception as e:
-        return {"Error": str(e)}
+            for k, v in ifd.items():
+                tag = resolve.get(k, k)
+                metadata[tag] = v
+        except KeyError:
+            continue
+
+    return metadata
 
 
 # ### 2.4 Pendefinisian Fungsi Resize Citra
@@ -214,8 +222,6 @@ def ubahUkuran(img_path):
         new_width = int(width * ratio)
         img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
 
-    # Simpan kembali ke variabel img_path jika ingin menimpa file
-    img.save(img_path)
     return img
 
 # ## 3. Main Program

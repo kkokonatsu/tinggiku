@@ -8,6 +8,10 @@ venv/
 .models
 models
 
+# Notebooks
+Notebooks/HasilDepthPro/
+Notebooks/Hasil_YOLO/
+
 # Byte-code files
 __pycache__/
 *.pyc
