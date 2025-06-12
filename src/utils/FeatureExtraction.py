@@ -21,7 +21,7 @@ from pillow_heif import register_heif_opener  # HEIF support
 import piexif
 
 import sys
-# sys.path.append("../../notebooks/ml-depth-pro/src") 
+sys.path.append("../../notebooks/ml-depth-pro/src") 
 
 from depthpro import depth_pro, utils
 
