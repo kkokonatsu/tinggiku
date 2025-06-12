@@ -21,10 +21,9 @@ from pillow_heif import register_heif_opener  # HEIF support
 import piexif
 
 import sys
-sys.path.append("ml-depth-pro/src")  # Pastikan ini menunjuk ke root package "depthpro"
+# sys.path.append("../../notebooks/ml-depth-pro/src") 
 
 from depthpro import depth_pro, utils
-
 
 # ## 2. Pendefinisian Fungsi 
 

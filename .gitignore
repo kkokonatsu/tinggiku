@@ -6,11 +6,18 @@ venv/
 # Models
 .Models
 .models
+*.pkl
 models
 
-# Notebooks
-Notebooks/HasilDepthPro/
-Notebooks/Hasil_YOLO/
+# Folders inside notebooks/ that contain generated data or temporary files
+notebooks/catboost_info/
+notebooks/Encoder Tersimpan/
+notebooks/Hasil DepthPro/
+notebooks/Hasil_YOLO/
+notebooks/Model_Tersimpan/
+
+# Specific data files you might want to ignore (based on your screenshot)
+notebooks/*.xlsx
 
 # Byte-code files
 __pycache__/
@@ -28,3 +35,6 @@ Thumbs.db
 # IDE-specific files (contoh untuk VS Code, IntelliJ/PyCharm)
 .vscode/
 .idea/
+
+# Node.js dependencies
+node_modules/
