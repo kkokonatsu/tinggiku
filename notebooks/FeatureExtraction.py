@@ -34,11 +34,14 @@ from depthpro import depth_pro, utils
 
 
 def deteksiPerson(image_path, threshold=0.7, visualize=False):
-    # Load model YOLO
+    # Load YOLOv8 model (gunakan model kecil untuk kecepatan, bisa diganti misalnya 'yolov8m.pt')
     model = YOLO("../models/yolov8n.pt")
-    
+
     # Run inference
-    results = model(image_path)[0]
+    results = model(image_path)[0]  # Hanya ambil hasil dari batch pertama
+
+    # Inisialisasi hasil
+    person_data = []
 
     # Siapkan gambar untuk visualisasi jika diminta
     image = Image.open(image_path).convert("RGB")
@@ -46,13 +49,10 @@ def deteksiPerson(image_path, threshold=0.7, visualize=False):
         image_draw = image.copy()
         draw = ImageDraw.Draw(image_draw)
 
-    best_person = None
-    best_score = threshold
-
     for box in results.boxes:
-        cls_id = int(box.cls.item())
-        score = box.conf.item()
-        if cls_id == 0 and score >= best_score:
+        cls_id = int(box.cls.item())  # class ID
+        score = box.conf.item()       # confidence
+        if cls_id == 0 and score >= threshold:  # COCO class ID 0 = person
             x_min, y_min, x_max, y_max = box.xyxy[0].tolist()
             x_min, y_min, x_max, y_max = round(x_min, 2), round(y_min, 2), round(x_max, 2), round(y_max, 2)
 
@@ -61,33 +61,25 @@ def deteksiPerson(image_path, threshold=0.7, visualize=False):
             center_x = (x_min + x_max) / 2
             center_y = (y_min + y_max) / 2
 
-            best_person = {
+            person_data.append({
                 "TitikTengah": (center_x, center_y),
                 "LebarBB": width,
-                "TinggiBB": height,
-                "Skor": score
-            }
+                "TinggiBB": height
+            })
 
-    # Gambar bounding box jika visualisasi diaktifkan
-    if visualize and best_person:
-        draw.rectangle([
-            best_person["TitikTengah"][0] - best_person["LebarBB"]/2,
-            best_person["TitikTengah"][1] - best_person["TinggiBB"]/2,
-            best_person["TitikTengah"][0] + best_person["LebarBB"]/2,
-            best_person["TitikTengah"][1] + best_person["TinggiBB"]/2
-        ], outline="red", width=3)
-        draw.text((
-            best_person["TitikTengah"][0] - best_person["LebarBB"]/2,
-            best_person["TitikTengah"][1] - best_person["TinggiBB"]/2 - 10
-        ), f"Person {best_person['Skor']:.2f}", fill="red")
+            # Gambar bounding box jika visualisasi diaktifkan
+            if visualize:
+                draw.rectangle([x_min, y_min, x_max, y_max], outline="red", width=3)
+                draw.text((x_min, y_min - 10), f"Person {score:.2f}", fill="red")
 
+    # Simpan gambar hasil jika diminta
+    if visualize:
         os.makedirs('Hasil_YOLO', exist_ok=True)
         output_filename = os.path.splitext(os.path.basename(image_path))[0] + '_yolo.png'
         output_path = os.path.join('Hasil_YOLO', output_filename)
         image_draw.save(output_path)
 
-    return best_person
-
+    return person_data
 # ### 2.2 DepthAnythingV2 : Fitur Kedalaman Absolut Citra pada Titik tertentu
 
 # In[ ]:
