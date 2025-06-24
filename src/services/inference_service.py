@@ -58,10 +58,10 @@ def perform_inference(img_path: str, visualize: bool = False):
     #     return None
     # TinggiBB = dataObjek[0]['TinggiBB']
 
-    # # Asumsi nama key di metadata sesuai dengan yang dibutuhkan model
-    # # Gunakan .get() dengan nilai default untuk keamanan
-    # ApertureValue = metadata.get('ApertureValue', 0.0)
-    # BrightnessValue = metadata.get('BrightnessValue', 0.0)
+    # Asumsi nama key di metadata sesuai dengan yang dibutuhkan model
+    # Gunakan .get() dengan nilai default untuk keamanan
+    ApertureValue = metadata.get('ApertureValue', 1.648637324)
+    BrightnessValue = metadata.get('BrightnessValue', 2.186689273)
 
     # Validasi: jika kedalamanObjek < 1, ubah jadi 1.5
     if kedalamanObjek < 1:
