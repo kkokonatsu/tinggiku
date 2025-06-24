@@ -35,35 +35,33 @@ def perform_inference(img_path: str, visualize: bool = False):
     # ====================================================================
     # DUMMY DATA HASIL EKSTRAKSI FITUR
     # ====================================================================
-    # Ganti bagian ini dengan nilai dummy yang Anda inginkan
-    # TinggiBB = 3034.5
-    # kedalamanObjek = 1.5962492227554321
-    # focal_length_px = 2779.943164886649
-    # ApertureValue = 1.6959938128383605
-    # BrightnessValue = 3.672446894159906
+    TinggiBB = 3034.5
+    kedalamanObjek = 1.5962492227554321
+    focal_length_px = 2779.943164886649
+    ApertureValue = 1.6959938128383605
+    BrightnessValue = 3.672446894159906
     # ====================================================================
 
-
     # Panggil fungsi ekstraksiFitur
-    try:
-        dataObjek, kedalamanObjek, metadata, focal_length_px = ekstraksiFitur(img_path, visualize)
-    except ValueError as e:
-        print(f"Error ekstraksi fitur: {e}")
-        return None
-    except Exception as e:
-        print(f"Terjadi error tak terduga saat ekstraksi fitur: {e}")
-        return None
+    # try:
+    #     dataObjek, kedalamanObjek, metadata, focal_length_px = ekstraksiFitur(img_path, visualize)
+    # except ValueError as e:
+    #     print(f"Error ekstraksi fitur: {e}")
+    #     return None
+    # except Exception as e:
+    #     print(f"Terjadi error tak terduga saat ekstraksi fitur: {e}")
+    #     return None
 
-    # Ekstrak nilai yang dibutuhkan dari hasil ekstraksi fitur
-    if not dataObjek or not dataObjek[0] or 'TinggiBB' not in dataObjek[0]:
-        print("Error: TinggiBB tidak ditemukan di data objek yang terdeteksi.")
-        return None
-    TinggiBB = dataObjek[0]['TinggiBB']
+    # # Ekstrak nilai yang dibutuhkan dari hasil ekstraksi fitur
+    # if not dataObjek or not dataObjek[0] or 'TinggiBB' not in dataObjek[0]:
+    #     print("Error: TinggiBB tidak ditemukan di data objek yang terdeteksi.")
+    #     return None
+    # TinggiBB = dataObjek[0]['TinggiBB']
 
-    # Asumsi nama key di metadata sesuai dengan yang dibutuhkan model
-    # Gunakan .get() dengan nilai default untuk keamanan
-    ApertureValue = metadata.get('ApertureValue', 0.0)
-    BrightnessValue = metadata.get('BrightnessValue', 0.0)
+    # # Asumsi nama key di metadata sesuai dengan yang dibutuhkan model
+    # # Gunakan .get() dengan nilai default untuk keamanan
+    # ApertureValue = metadata.get('ApertureValue', 0.0)
+    # BrightnessValue = metadata.get('BrightnessValue', 0.0)
 
     # Validasi: jika kedalamanObjek < 1, ubah jadi 1.5
     if kedalamanObjek < 1:
